@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurafy — Read the Energy</title>
+<meta name="description" content="Aurafy is a psychology-based relationship and self-discovery reading app. Not horoscopes. Real frameworks, real insight.">
+<meta name="theme-color" content="#0B0714">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Aurafy — Read the Energy">
+<meta property="og:description" content="Psychology-based relationship & self-discovery readings. Not horoscopes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aurafyapp.github.io/aurafy-legal/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0B0714;
+    --bg-2:#120B1F;
+    --ink:#F4F0FF;
+    --ink-dim:rgba(244,240,255,.62);
+    --ink-faint:rgba(244,240,255,.38);
+    --violet:#8B5CF6;
+    --rose:#F472B6;
+    --cyan:#38BDF8;
+    --gold:#F5C86B;
+    --glass:rgba(255,255,255,.045);
+    --glass-brd:rgba(255,255,255,.10);
+    --radius:22px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+
+  /* ── ambient aura background ── */
+  .aura{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    overflow:hidden;
+  }
+  .orb{
+    position:absolute; border-radius:50%;
+    filter:blur(90px); opacity:.42;
+    animation:drift 22s ease-in-out infinite;
+  }
+  .orb.a{width:520px;height:520px;background:var(--violet);top:-140px;left:-120px}
+  .orb.b{width:440px;height:440px;background:var(--rose);top:22%;right:-140px;animation-delay:-7s}
+  .orb.c{width:480px;height:480px;background:var(--cyan);bottom:-160px;left:18%;animation-delay:-14s;opacity:.28}
+  @keyframes drift{
+    0%,100%{transform:translate(0,0) scale(1)}
+    33%{transform:translate(40px,-30px) scale(1.08)}
+    66%{transform:translate(-30px,40px) scale(.94)}
+  }
+  .grain{
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 24px}
+
+  /* ── nav ── */
+  nav{
+    position:sticky;top:0;z-index:20;
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    background:rgba(11,7,20,.55);
+    border-bottom:1px solid var(--glass-brd);
+  }
+  .nav-in{
+    max-width:900px;margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:-.01em}
+  .mark{
+    width:30px;height:30px;border-radius:50%;
+    background:conic-gradient(from 180deg,var(--violet),var(--rose),var(--cyan),var(--violet));
+    box-shadow:0 0 22px rgba(139,92,246,.55);
+    animation:spin 9s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .nav-links{display:flex;gap:22px;font-size:14px}
+  .nav-links a{color:var(--ink-dim);text-decoration:none;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+
+  /* ── hero ── */
+  header{padding:110px 0 84px;text-align:center}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);font-weight:500;
+    padding:7px 16px;border-radius:999px;
+    background:rgba(245,200,107,.07);border:1px solid rgba(245,200,107,.22);
+    margin-bottom:30px;
+  }
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+  h1{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(44px,7.5vw,78px);line-height:1.02;letter-spacing:-.03em;
+    margin-bottom:22px;
+  }
+  h1 .grad{
+    background:linear-gradient(110deg,var(--violet),var(--rose) 45%,var(--cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{font-size:clamp(16px,2.2vw,19px);color:var(--ink-dim);max-width:520px;margin:0 auto 40px}
+  .sub strong{color:var(--ink);font-weight:500}
+
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:14px 28px;border-radius:999px;
+    font-size:15px;font-weight:500;text-decoration:none;
+    transition:transform .2s ease,box-shadow .25s ease,background .2s;
+  }
+  .btn-primary{
+    background:linear-gradient(100deg,var(--violet),var(--rose));
+    color:#fff;box-shadow:0 8px 34px -8px rgba(139,92,246,.75);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 44px -8px rgba(139,92,246,.9)}
+  .btn-ghost{
+    background:var(--glass);color:var(--ink);
+    border:1px solid var(--glass-brd);
+    backdrop-filter:blur(12px);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.09);transform:translateY(-2px)}
+
+  /* ── sections ── */
+  section{padding:64px 0}
+  .sec-title{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(26px,4vw,36px);letter-spacing:-.02em;margin-bottom:12px;
+  }
+  .sec-sub{color:var(--ink-dim);font-size:16px;margin-bottom:36px;max-width:560px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  .card{
+    background:var(--glass);
+    border:1px solid var(--glass-brd);
+    border-radius:var(--radius);
+    padding:26px;
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    transition:transform .28s ease,border-color .28s ease,background .28s ease;
+    position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(500px circle at var(--mx,50%) var(--my,0%),rgba(139,92,246,.13),transparent 42%);
+    opacity:0;transition:opacity .3s;pointer-events:none;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(139,92,246,.42);background:rgba(255,255,255,.06)}
+  .card:hover::before{opacity:1}
+  .ico{
+    width:42px;height:42px;border-radius:13px;
+    display:grid;place-items:center;font-size:19px;margin-bottom:16px;
+    background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.26);
+  }
+  .card h3{font-family:'Fraunces',serif;font-size:18px;font-weight:600;margin-bottom:7px;letter-spacing:-.01em}
+  .card p{font-size:14.5px;color:var(--ink-dim);line-height:1.6}
+
+  /* stat strip */
+  .stats{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+    background:var(--glass-brd);
+    border:1px solid var(--glass-brd);
+    border-radius:var(--radius);overflow:hidden;margin-top:36px;
+  }
+  .stat{background:rgba(11,7,20,.72);padding:26px 18px;text-align:center;backdrop-filter:blur(12px)}
+  .stat b{
+    display:block;font-family:'Fraunces',serif;font-size:30px;font-weight:600;
+    background:linear-gradient(120deg,var(--violet),var(--rose));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* legal band */
+  .legal{
+    background:var(--glass);border:1px solid var(--glass-brd);
+    border-radius:var(--radius);padding:34px;backdrop-filter:blur(16px);
+    display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;
+  }
+  .legal-links{display:flex;gap:12px;flex-wrap:wrap}
+  .pill{
+    padding:11px 20px;border-radius:999px;font-size:14px;text-decoration:none;
+    color:var(--ink);background:rgba(255,255,255,.05);
+    border:1px solid var(--glass-brd);transition:all .2s;
+  }
+  .pill:hover{border-color:var(--violet);background:rgba(139,92,246,.14)}
+
+  /* footer */
+  footer{border-top:1px solid var(--glass-brd);padding:40px 0;margin-top:40px}
+  .foot{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+  .foot p{font-size:13px;color:var(--ink-faint)}
+  .foot a{color:var(--ink-dim);text-decoration:none;font-size:13px;margin-left:16px;transition:color .2s}
+  .foot a:hover{color:var(--rose)}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+
+  @media(max-width:640px){
+    .nav-links{display:none}
+    header{padding:74px 0 56px}
+    .legal{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<div class="aura">
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+  <div class="orb c"></div>
+</div>
+<div class="grain"></div>
+
+<nav>
+  <div class="nav-in">
+    <div class="brand"><div class="mark"></div>Aurafy</div>
+    <div class="nav-links">
+      <a href="#what">What it is</a>
+      <a href="#modules">Modules</a>
+      <a href="#legal">Legal</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header>
+    <div class="kicker"><span class="dot"></span>Psychology · Not horoscopes</div>
+    <h1>Read the<br><span class="grad">Energy.</span></h1>
+    <p class="sub">Aurafy turns real psychological frameworks into <strong>relationship readings</strong> and <strong>self-discovery sessions</strong>. Answer honestly. Get an answer that actually lands.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://aurafyapp.github.io/aurafy-legal/privacy.html">📄 Legal & Privacy</a>
+      <a class="btn btn-ghost" href="https://instagram.com/aurafy.app" target="_blank" rel="noopener">Follow @aurafy.app</a>
+    </div>
+  </header>
+
+  <section id="what" class="rv">
+    <h2 class="sec-title">Not another star sign app.</h2>
+    <p class="sec-sub">Every reading is built on attachment theory, behavioural psychology, and interpersonal dynamics — dressed in something worth looking at.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">🧠</div>
+        <h3>Framework-first</h3>
+        <p>Questions are mapped to psychological signals, not vibes. The result is an interpretation, not a fortune.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔒</div>
+        <h3>Fully offline</h3>
+        <p>No account, no server, no upload. Everything you answer stays on your device. Always.</p>
+      </div>
+      <div class="card">
+        <div class="ico">✨</div>
+        <h3>Daily ritual</h3>
+        <p>A weekly curriculum and a short daily flow that builds a picture of you over time.</p>
+      </div>
+      <div class="card">
+        <div class="ico">⭐</div>
+        <h3>Stars economy</h3>
+        <p>Earn Stars, unlock modules and themes. No purchases required — ever.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="modules" class="rv">
+    <h2 class="sec-title">Ask the questions you can't ask out loud.</h2>
+    <p class="sec-sub">Relationship modules read the people around you. Self modules read you.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">💗</div>
+        <h3>Relationship readings</h3>
+        <p>Who really loves you. Who resents you. Who's pulling away. Add the people in your life and let the pattern surface.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🪞</div>
+        <h3>Self-discovery</h3>
+        <p>Attachment style, shadow traits, healing progress. The mirror you don't get to look away from.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🌍</div>
+        <h3>4 languages</h3>
+        <p>English, Français, العربية (full RTL), and Español. Built for it, not translated after.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>9+</b><span>Modules</span></div>
+      <div class="stat"><b>20</b><span>Questions each</span></div>
+      <div class="stat"><b>4</b><span>Languages</span></div>
+      <div class="stat"><b>0</b><span>Data collected</span></div>
+    </div>
+  </section>
+
+  <section id="legal" class="rv">
+    <h2 class="sec-title">Legal</h2>
+    <p class="sec-sub">Required policies for Google Play and AdMob. Aurafy is rated 16+ and is not directed at children.</p>
+    <div class="legal">
+      <div>
+        <h3 style="font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin-bottom:6px">Policies & disclosures</h3>
+        <p style="color:var(--ink-dim);font-size:14.5px">Privacy Policy, Terms of Service, and ad-partner disclosures.</p>
+      </div>
+      <div class="legal-links">
+        <a class="pill" href="https://aurafyapp.github.io/aurafy-legal/privacy.html">Privacy Policy</a>
+        <a class="pill" href="https://aurafyapp.github.io/aurafy-legal/terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="rv" style="padding-bottom:24px">
+    <h2 class="sec-title">Get in touch</h2>
+    <p class="sec-sub">Support, press, or partnership — one inbox.</p>
+    <div class="legal">
+      <div>
+        <h3 style="font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin-bottom:6px">aurafy.app26@gmail.com</h3>
+        <p style="color:var(--ink-dim);font-size:14.5px">Published by Simobr Studio · Morocco</p>
+      </div>
+      <div class="legal-links">
+        <a class="pill" href="mailto:aurafy.app26@gmail.com">Email us</a>
+        <a class="pill" href="https://instagram.com/aurafy.app" target="_blank" rel="noopener">Instagram</a>
+        <a class="pill" href="https://tiktok.com/@aurafy.app" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot" style="align-items: center; justify-content: center">
+      <p>© <span id="yr">2026</span> Simobr Studio · Aurafy™ — All rights reserved.</p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // scroll reveal
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  // cursor glow on cards
+  document.querySelectorAll('.card').forEach(c=>{
+    c.addEventListener('mousemove',e=>{
+      const r=c.getBoundingClientRect();
+      c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+      c.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+  });
+</script>
+</body>
+</html>
+
